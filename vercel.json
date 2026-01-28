@@ -1,16 +1,21 @@
 {
+  "version": 2,
+
   "buildCommand": "pnpm run build",
+
   "outputDirectory": "dist/public",
-  "rewrites": [
+
+  "routes": [
     {
-      "source": "/api/trpc/:path*",
-      "destination": "/api/trpc/:path*"
+      "src": "^/api/trpc/(.*)$",
+      "dest": "/api/trpc/[...path].ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
+
   "functions": {
     "api/trpc/[...path].ts": {
       "maxDuration": 30
